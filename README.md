@@ -2,6 +2,9 @@
 
 This project aims to demonstrate the use of Jenkins for Continuous Integration and Continuous Deployment (CI/CD) of AWS infrastructure. It includes configurations for setting up a Jenkins server on an EC2 instance, managing a remote backend for Terraform state files on AWS S3, and provisioning an AWS infrastructure (eg.EKS cluster).
 
+## Architecture 
+![](architecture.png)
+
 ## Folder Structure
 
 - **Jenkins**: Contains files to configure Jenkins CI/CD server on an EC2 instance.
