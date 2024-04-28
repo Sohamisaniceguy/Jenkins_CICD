@@ -8,19 +8,9 @@ variable "public_subnets" {
   type = list(string)
 }
 
-variable "private_subnets_web" {
+variable "private_subnets" {
   description = "Private subnet list"
   type = list(string)
-}
-
-variable "private_subnets_db" {
-  description = "Private subnet list"
-  type = list(string)
-}
-
-variable "all_private_subnets" {
-  type = list(string)
-  default = concat(var.private_subnets_web, var.private_subnets_db)
 }
 
 variable "instance_type" {
