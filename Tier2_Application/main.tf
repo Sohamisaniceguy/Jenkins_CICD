@@ -53,67 +53,9 @@ module "vpc" {
 
 
 #SG:
-module "sg" {
-  source = "terraform-aws-modules/security-group/aws"
 
-  name        = "SecurityG-EC2"
-  description = "Security group for EC2 Server"
-  vpc_id      = module.vpc.vpc_id
-
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 8080
-      to_port     = 8080
-      protocol    = "tcp"
-      description = "HTTP"
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      description = "HTTP"
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
-
-  egress_with_cidr_blocks =[
-    {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      description = "All"
-      cidr_blocks = "0.0.0.0/0"
-    }
-  ]
-
-  tags = {
-    Name= "EC-SG"
-  }
-}
 
 
 
 
 #EC2:
-module "ec2_instance" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
-
-  name = "EC2-Server"
-
-  instance_type          = var.instance_type
-  #key_name               = 
-  monitoring             = true
-  vpc_security_group_ids = [module.sg.security_group_id]
-  subnet_id              = module.vpc.private_subnets
-#   associate_public_ip_address = true
-#   user_data = file("jenkins-installation.sh")
-  availability_zone = data.aws_availability_zones.azs.names
-
-  tags = {
-    Name = "EC2-server"
-    Terraform   = "true"
-    Environment = "dev"
-  }
-}
-
