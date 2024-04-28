@@ -105,7 +105,7 @@ module "ec2_instance" {
   #key_name               = 
   monitoring             = true
   vpc_security_group_ids = [module.sg.security_group_id]
-  subnet_id              = module.vpc.private_subnets[0:2]
+  subnet_id              = [module.vpc.private_subnets[0:2]]
 #   associate_public_ip_address = true
 #   user_data = file("jenkins-installation.sh")
   availability_zone = data.aws_availability_zones.azs.names
