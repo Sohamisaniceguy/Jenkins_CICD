@@ -54,7 +54,7 @@ module "ec2_sg" {
   description = "Security group for EC2"
   vpc_id      = module.vpc.vpc_id
 
-  ingress_with_cidr_blocks = [
+  computed_ingress_with_source_security_group_id = [
     {
       from_port   = 80
       to_port     = 80
@@ -102,7 +102,7 @@ module "db_sg" {
   description = "Security group for DB"
   vpc_id      = module.vpc.vpc_id
 
-  ingress_with_cidr_blocks = [
+  computed_ingress_with_source_security_group_id = [
     {
       from_port   = 3360
       to_port     = 3360
