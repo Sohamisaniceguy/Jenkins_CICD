@@ -54,16 +54,31 @@ module "ec2_sg" {
   description = "Security group for EC2"
   vpc_id      = module.vpc.vpc_id
 
-  
-
-  computed_ingress_with_source_security_group_id = [
+  ingress_with_source_security_group_id = [
     {
-      rule                     = "internal-tcp"
-      source_security_group_id = module.alb_sg.security_group_id
-    }
+      from_port   = 80
+      to_port     = 80
+      protocol    = "tcp"
+      description = "HTTP"
+    #   cidr_blocks = "0.0.0.0/0"
+      security_group_id=module.alb_sg.security_group_id
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "HTTPS"
+    #   cidr_blocks = "0.0.0.0/0"
+      security_group_id=module.alb_sg.security_group_id
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "HTTP"
+      cidr_blocks = "0.0.0.0/0"
+    },
   ]
-  number_of_computed_ingress_with_source_security_group_id = 1
-
 
   egress_with_cidr_blocks =[
     {
@@ -87,16 +102,23 @@ module "db_sg" {
   description = "Security group for DB"
   vpc_id      = module.vpc.vpc_id
 
-  
-
-  computed_ingress_with_source_security_group_id = [
+  ingress_with_source_security_group_id = [
     {
-      rule                     = "mysql-tcp"
-      source_security_group_id = module.ec2_sg.security_group_id
-    }
+      from_port   = 3360
+      to_port     = 3360
+      protocol    = "tcp"
+      description = "HTTP"
+    #   cidr_blocks = "0.0.0.0/0"
+      security_group_id=module.ec2_sg.security_group_id
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "HTTP"
+      cidr_blocks = "0.0.0.0/0"
+    },
   ]
-  number_of_computed_ingress_with_source_security_group_id = 1
-
 
   egress_with_cidr_blocks =[
     {
