@@ -34,9 +34,17 @@ module "vpc" {
   enable_nat_gateway = true
 
   tags = {
-    Name = "Tier2App"
+    Name = "Tier2App-VPC"
     Terraform = "true"
     Environment = "dev"
+  }
+
+  public_subnet_tags = {            #Specific for Subnet , different from VPC
+    Name = "Tier2App-Pub-Subnet"
+  }
+
+  private_subnet_tags = {            #Specific for Subnet , different from VPC
+    Name = "Tier2App-Priv-Subnet"
   }
 }
 
