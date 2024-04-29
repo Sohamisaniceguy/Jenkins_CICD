@@ -64,7 +64,7 @@ module "ec2_sg" {
     {
       description              = "HTTPS from service one"
       rule                     = "https-443-tcp"
-      source_security_group_id = data.alb_sg.security_group_id
+      source_security_group_id = module.alb_sg.security_group_id
     },
     {
       description           = "SSH from all"
