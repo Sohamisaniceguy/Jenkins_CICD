@@ -61,7 +61,7 @@ module "ec2_sg" {
       protocol    = "tcp"
       description = "HTTP"
     #   cidr_blocks = "0.0.0.0/0"
-      security_group_id=module.alb_sg.this_security_group_id
+      security_group_id=[module.alb_sg.this_security_group_id]
     },
     {
       from_port   = 443
@@ -69,7 +69,7 @@ module "ec2_sg" {
       protocol    = "tcp"
       description = "HTTPS"
     #   cidr_blocks = "0.0.0.0/0"
-      security_group_id=module.alb_sg.this_security_group_id
+      security_group_id=[module.alb_sg.this_security_group_id]
     },
     {
       from_port   = 22
@@ -109,7 +109,7 @@ module "db_sg" {
       protocol    = "tcp"
       description = "HTTP"
     #   cidr_blocks = "0.0.0.0/0"
-      security_group_id=module.ec2_sg.this_security_group_id
+      security_group_id=[module.ec2_sg.this_security_group_id]
     },
     {
       from_port   = 22
