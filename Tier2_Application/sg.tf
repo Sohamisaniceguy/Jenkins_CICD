@@ -61,7 +61,7 @@ module "ec2_sg" {
       protocol    = "tcp"
       description = "HTTP"
     #   cidr_blocks = "0.0.0.0/0"
-    #   security_group_id= module.alb_sg.security_group_id
+    security_group_id= module.alb_sg.security_group_id
     source_security_group_id = module.alb_sg.security_group_id
     },
     {
@@ -70,7 +70,7 @@ module "ec2_sg" {
       protocol    = "tcp"
       description = "HTTPS"
     #   cidr_blocks = "0.0.0.0/0"
-    #   security_group_id= module.alb_sg.security_group_id
+    security_group_id= module.alb_sg.security_group_id
     source_security_group_id = module.alb_sg.security_group_id
     },
     {
