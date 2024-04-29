@@ -74,7 +74,7 @@ module "ec2_sg" {
       to_port     = 0
       protocol    = "-1"
       description = "All"
-      cidr_blocks = ["0.0.0.0/0"]
+      cidr_blocks = "0.0.0.0/0"
     }
   ]
 
