@@ -52,6 +52,13 @@ module "alb" {
         timeout             = 60
         matcher             = "200"
       }
+
+      protocol_version = "HTTP1"
+      target_id        = aws_instance.this.id
+      port             = 80
+      tags = {
+        InstanceTargetGroupTag = "EC2-clientTG"
+      }
     }
 
 #     resource "aws_lb_target_group" "alb_target_group" {
