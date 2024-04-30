@@ -2,7 +2,7 @@
 module "key" {
   source = "terraform-aws-modules/key-pair/aws"
 
-  key_name   = "Tier2app-Ec2Key"
+  key_name = "ASG-Key"
   public_key = file("key1.pem")
 }
 
