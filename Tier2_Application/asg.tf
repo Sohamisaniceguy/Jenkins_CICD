@@ -6,6 +6,7 @@ module "key_pair" {
   public_key = file("key1.pem")
 }
 
+#Autoscaling Configuration:
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
 
@@ -38,7 +39,7 @@ module "asg" {
   launch_template_description = "Launch template for ASG"
   image_id          = var.image_id
   instance_type     = var.instance_type
-  key_name          = module.key_pair.key_pair_name
+  key_name          = module.key_pair.key_pair_name 
   ebs_optimized     = true
   enable_monitoring = true
   user_data = base64encode(file("config_ec2.sh"))
