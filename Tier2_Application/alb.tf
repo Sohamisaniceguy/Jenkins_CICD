@@ -1,16 +1,16 @@
-# module "alb" {
-#   source = "terraform-aws-modules/alb/aws"
+module "alb" {
+  source = "terraform-aws-modules/alb/aws"
 
-#   name    = "Tier2App-alb"
-#   vpc_id  = module.vpc.vpc_id
-#   subnets = module.vpc.public_subnets
+  name    = "Tier2App-alb"
+  vpc_id  = module.vpc.vpc_id
+  subnets = module.vpc.public_subnets
 
-#   security_groups = [module.alb_sg.security_group_id]
-#   enable_deletion_protection=false #This is True by default
+  security_groups = [module.alb_sg.security_group_id]
+  enable_deletion_protection=false #This is True by default
 
-#   access_logs = {
-#     bucket = "Tier2App-alb-logs"
-#   }
+  access_logs = {
+    bucket = "Tier2App-alb-logs"
+  }
 
 #   listeners = {
 #     ex-http-https-redirect = {
@@ -61,32 +61,31 @@
 #       }
 #     }
 
-# #     resource "aws_lb_target_group" "alb_target_group" {
-# #   name        = "${var.project_name}-tg"
-# #   target_type = "instance"
-# #   port        = 80
-# #   protocol    = "HTTP"
-# #   vpc_id      = var.vpc_id
+#     resource "aws_lb_target_group" "alb_target_group" {
+#   name        = "${var.project_name}-tg"
+#   target_type = "instance"
+#   port        = 80
+#   protocol    = "HTTP"
+#   vpc_id      = var.vpc_id
 
-# #   health_check {
-# #     enabled             = true
-# #     interval            = 300
-# #     path                = "/"
-# #     timeout             = 60
-# #     matcher             = 200
-# #     healthy_threshold   = 2
-# #     unhealthy_threshold = 5
-# #   }
+#   health_check {
+#     enabled             = true
+#     interval            = 300
+#     path                = "/"
+#     timeout             = 60
+#     matcher             = 200
+#     healthy_threshold   = 2
+#     unhealthy_threshold = 5
+#   }
 
-# #   lifecycle {
-# #     create_before_destroy = true
-# #   }
-# # }
-
-#   tags = {
-#     Name= "Tier2App-ALB"
-#     Environment = "dev"
-#     # Project     = "Example"
+#   lifecycle {
+#     create_before_destroy = true
 #   }
 # }
-# }
+
+  tags = {
+    Name= "Tier2App-ALB"
+    Environment = "dev"
+    # Project     = "Example"
+  }
+}
