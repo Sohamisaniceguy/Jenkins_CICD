@@ -1,5 +1,5 @@
 #Key Pair passing:
-module "key" {
+module "key_pair" {
   source = "terraform-aws-modules/key-pair/aws"
 
   key_name = "ASG-Key"
@@ -38,7 +38,7 @@ module "asg" {
   launch_template_description = "Launch template for ASG"
   image_id          = var.image_id
   instance_type     = var.instance_type
-  key_name = module.key.key_name
+  key_name          = module.key_pair.key_pair_name
   ebs_optimized     = true
   enable_monitoring = true
   user_data = base64encode(file("config_ec2.sh"))
