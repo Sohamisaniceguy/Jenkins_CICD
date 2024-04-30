@@ -1,51 +1,37 @@
-module "s3_bucket" {
-  source = "terraform-aws-modules/s3-bucket/aws"
+# module "alb" {
+#   source = "terraform-aws-modules/alb/aws"
 
-  bucket = "Tier2App-alb-logs"
-  acl    = "private"
+#   name    = "Tier2App-alb"
+#   vpc_id  = module.vpc.vpc_id
+#   subnets = module.vpc.public_subnets
 
-  control_object_ownership = true
-  object_ownership         = "ObjectWriter"
+#   security_groups = [module.alb_sg.security_group_id]
+#   enable_deletion_protection=false #This is True by default
 
-  versioning = {
-    enabled = true
-  }
-}
+# #   access_logs = {
+# #     bucket = "Tier2App-alb-logs"
+# #   }
 
-module "alb" {
-  source = "terraform-aws-modules/alb/aws"
+# #   listeners = {
+# #     ex-http-https-redirect = {
+# #       port     = 80
+# #       protocol = "HTTP"
+# #     #   redirect = {
+# #     #     port        = "443"
+# #     #     protocol    = "HTTPS"
+# #     #     status_code = "HTTP_301"
+# #     #   }
+# #     }
+# #     default_action = {
+# #     #   port            = 443
+# #     #   protocol        = "HTTPS"
+# #     #   certificate_arn = "arn:aws:iam::123456789012:server-certificate/test_cert-123456789012"
 
-  name    = "Tier2App-alb"
-  vpc_id  = module.vpc.vpc_id
-  subnets = module.vpc.public_subnets
-
-  security_groups = [module.alb_sg.security_group_id]
-  enable_deletion_protection=false #This is True by default
-
-  access_logs = {
-    bucket = "Tier2App-alb-logs"
-  }
-
-#   listeners = {
-#     ex-http-https-redirect = {
-#       port     = 80
-#       protocol = "HTTP"
-#     #   redirect = {
-#     #     port        = "443"
-#     #     protocol    = "HTTPS"
-#     #     status_code = "HTTP_301"
-#     #   }
-#     }
-#     edefault_action = {
-#     #   port            = 443
-#     #   protocol        = "HTTPS"
-#     #   certificate_arn = "arn:aws:iam::123456789012:server-certificate/test_cert-123456789012"
-
-#       forward = {
-#         target_group_key = "ex-instance"
-#       }
-#     }
-#   }
+# #       forward = {
+# #         target_group_key = "ex-instance"
+# #       }
+# #     }
+# #   }
 
 #   target_groups = {
 #     ex-instance = {
@@ -68,7 +54,7 @@ module "alb" {
 #       }
 
 #       protocol_version = "HTTP1"
-#       # target_id        = aws_instance.this.id # Problem
+#       target_id        = aws_instance.this.id # Problem
 #       port             = 80
 #       tags = {
 #         InstanceTargetGroupTag = "EC2-clientTG"
@@ -76,9 +62,11 @@ module "alb" {
 #     }
 
 
-  tags = {
-    Name= "Tier2App-ALB"
-    Environment = "dev"
-    # Project     = "Example"
-  }
-}
+#   tags = {
+#     Name= "Tier2App-ALB"
+#     Environment = "dev"
+#     # Project     = "Example"
+#   }
+# }
+
+# }
