@@ -38,7 +38,7 @@ module "asg" {
   launch_template_description = "Launch template for ASG"
   image_id          = var.image_id
   instance_type     = var.instance_type
-  key_name                  = module.key_pair.key_name
+#   key_name          = module.key_pair.key_name
   ebs_optimized     = true
   enable_monitoring = true
   user_data = file("config_ec2.sh")
