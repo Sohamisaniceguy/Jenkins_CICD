@@ -53,7 +53,7 @@ module "alb" {
         matcher             = "200"
       }
 
-      protocol_version = "HTTP"
+      protocol_version = "HTTP1"
       # target_id        = module.alb.target_groups["ex-instance"].id
       port             = 80
       tags = {
