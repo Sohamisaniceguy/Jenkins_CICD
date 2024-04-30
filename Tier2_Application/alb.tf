@@ -1,3 +1,17 @@
+module "s3_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+
+  bucket = "Tier2App-alb-logs"
+  acl    = "private"
+
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
+
+  versioning = {
+    enabled = true
+  }
+}
+
 module "alb" {
   source = "terraform-aws-modules/alb/aws"
 
@@ -61,27 +75,6 @@ module "alb" {
 #       }
 #     }
 
-#     resource "aws_lb_target_group" "alb_target_group" {
-#   name        = "${var.project_name}-tg"
-#   target_type = "instance"
-#   port        = 80
-#   protocol    = "HTTP"
-#   vpc_id      = var.vpc_id
-
-#   health_check {
-#     enabled             = true
-#     interval            = 300
-#     path                = "/"
-#     timeout             = 60
-#     matcher             = 200
-#     healthy_threshold   = 2
-#     unhealthy_threshold = 5
-#   }
-
-#   lifecycle {
-#     create_before_destroy = true
-#   }
-# }
 
   tags = {
     Name= "Tier2App-ALB"
