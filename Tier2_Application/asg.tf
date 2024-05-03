@@ -19,7 +19,7 @@ module "asg" {
   wait_for_capacity_timeout = 0
   health_check_type         = "ELB" #'ELB' or default EC2
   vpc_zone_identifier       = slice(module.vpc.private_subnets,0,2)
-  target_group_arns         = [module.aws_lb.lb_tg_arn]
+  target_group_arns         = [module.alb.lb_tg_arn]
   
 
 
