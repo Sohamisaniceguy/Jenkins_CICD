@@ -91,5 +91,13 @@ target_groups = [
     }
   ]
 
+  
 
+
+}
+
+resource "aws_lb_target_group_attachment" "this" {
+  count             = length(module.alb.lb_target_group_arns)
+  target_group_arn  = module.alb.lb_target_group_arns[count.index]
+  target_id         = aws_instance.example[count.index].id
 }
