@@ -12,26 +12,34 @@ module "alb" {
 #     bucket = "Tier2App-alb-logs"
 #   }
 
-#   listeners = {
-#     ex-http-https-redirect = {
-#       port     = 80
-#       protocol = "HTTP"
-#     #   redirect = {
-#     #     port        = "443"
-#     #     protocol    = "HTTPS"
-#     #     status_code = "HTTP_301"
-#     #   }
-#     }
-#     default_action = {
-#     #   port            = 443
-#     #   protocol        = "HTTPS"
-#     #   certificate_arn = "arn:aws:iam::123456789012:server-certificate/test_cert-123456789012"
+listeners = {
+    ex-http-https-redirect = {
+      port     = 80
+      protocol = "HTTP"
+      redirect = {
+        port        = "443"
+        protocol    = "HTTPS"
+        status_code = "HTTP_301"
+      }
 
-#       forward = {
-#         target_group_key = "ex-instance"
-#       }
-#     }
-#   }
+      rules = {
+        ex-fixed-response = {
+          priority = 3
+          actions = [{
+            type         = "fixed-response"
+            content_type = "text/plain"
+            status_code  = 200
+            message_body = "This is a fixed response"
+          }]
+
+          conditions = [{
+            http_header = {
+              http_header_name = "x-Gimme-Fixed-Response"
+              values           = ["yes", "please", "right now"]
+            }
+          }]
+        }
+
 
 #   target_groups = {
 #     ex-instance = {
@@ -96,8 +104,7 @@ target_groups = [
 
 }
 
-resource "aws_lb_target_group_attachment" "this" {
-  count             = length(module.alb.lb_target_group_arns)
-  target_group_arn  = module.alb.lb_target_group_arns[count.index]
-  target_id         = aws_instance.example[count.index].id
+    }
+
+}
 }
