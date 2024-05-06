@@ -13,7 +13,7 @@ module "alb" {
   # }
 
 listeners = {
-    ex-http-redirect = {
+    fixed_response = {
       port     = 80
       protocol = "HTTP"
       default_action = {
