@@ -16,7 +16,7 @@ listeners = {
     ex-http-redirect = {
       port     = 80
       protocol = "HTTP"
-      forward = {
+      default_action = {
         target_group_key = "ex-instance"
       }
     }
@@ -28,14 +28,14 @@ target_groups = {
       port             = 80
       target_type      = "instance"
 
-      health_check = {
-    enabled             = true
-    interval            = 300
-    path                = "/"
-    timeout             = 60
-    matcher             = 200
-    healthy_threshold   = 2
-    unhealthy_threshold = 5
+    health_check = {
+      enabled             = true
+      interval            = 300
+      path                = "/"
+      timeout             = 60
+      matcher             = 200
+      healthy_threshold   = 2
+      unhealthy_threshold = 5
   }
 
   lifecycle = {
