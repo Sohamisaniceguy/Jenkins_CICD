@@ -18,6 +18,7 @@ listeners = {
       protocol = "HTTP"
       default_action = {
         target_group_key = "ex-instance"
+        type            = "forward"
       }
     }
 
