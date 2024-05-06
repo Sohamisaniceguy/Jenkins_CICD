@@ -13,9 +13,10 @@ module "alb" {
   # }
 
 listeners = {
-    fixed_response = {
+    example_listener = {
       port     = 80
       protocol = "HTTP"
+      
       default_action = {
         target_group_key = "ex-instance"
         type            = "forward"
