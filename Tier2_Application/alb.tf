@@ -18,7 +18,7 @@ listeners = {
       protocol = "HTTP"
       
       default_action = {
-        target_group_arn = module.alb.target_groups.arn
+        target_group_arn = module.alb.target_groups.ex-instance
         type            = "forward"
       }
     }
