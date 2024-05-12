@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-URL='https://www.tooplate.com/zip-templates/2131_wedding_lite.zip'
+URL='https://www.tooplate.com/download/2108_dashboard'
 ART_NAME='2131_wedding_lite'
 TEMPDIR="/tmp/webfiles"
 

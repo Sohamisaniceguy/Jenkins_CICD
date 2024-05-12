@@ -1,5 +1,5 @@
 # Initialize Terraform
-terraform init -upgrade
+terraform init 
 
 # Display the execution plan
 terraform plan

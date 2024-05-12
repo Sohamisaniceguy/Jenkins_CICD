@@ -11,7 +11,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 5.30"
+      version = ">= 5.48.0"
     }
   }
 }
@@ -53,9 +53,17 @@ module "vpc" {
 
 
 #SG:
+module "SG" {
+  source = "./Module/security_group"
+}
 
 
 
 
+#ASG:
 
-#EC2:
+#ALB:
+module "ALB" {
+  source         = "./Module/ALB"
+}
+
