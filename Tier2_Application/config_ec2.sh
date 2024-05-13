@@ -2,7 +2,7 @@
 
 
 URL='https://www.tooplate.com/download/2108_dashboard'
-ART_NAME='2131_wedding_lite'
+ART_NAME='2131_admin_lite'
 TEMPDIR="/tmp/webfiles"
 
 # Set Variables for Ubuntu
