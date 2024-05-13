@@ -53,17 +53,28 @@ module "vpc" {
 
 
 #SG:
-module "SG" {
-  source = "./Module/security_group"
-}
+# module "sg" {
+#   source = "./Module/security_group"
+# }
 
 
 
 
-#ASG:
+
 
 #ALB:
-module "ALB" {
+module "alb" {
   source         = "./Module/ALB"
+  alb_sg_id      = module.alb_sg.security_group_id
+  public_subnet  = module.vpc.public_subnets
+  vpc_id         = module.vpc.vpc_id
+}
+
+#ASG:
+module "asg" {
+  source         = "./Module/ASG"
+  ec2_sg_id = module.ec2_sg.security_group_id
+  target_group_arn = module.alb.target_group_arn
+  private_subnets = slice(module.vpc.private_subnets,0,2)
 }
 

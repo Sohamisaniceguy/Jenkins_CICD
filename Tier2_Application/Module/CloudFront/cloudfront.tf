@@ -23,9 +23,9 @@ data "aws_acm_certificate" "issued" {
 
 resource "aws_cloudfront_distribution" "Tier2App_distribution" {
   origin {
-    domain_name              = aws_lb.Tier2App-alb.dns_name
+    domain_name              = var.alb_dns_name
     # origin_access_control_id = aws_cloudfront_origin_access_control.default.id
-    origin_id                = aws_lb.Tier2App-alb.dns_name
+    origin_id                = var.alb_dns_name
 
     custom_origin_config {
       http_port              = 80
@@ -51,7 +51,7 @@ resource "aws_cloudfront_distribution" "Tier2App_distribution" {
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
-    target_origin_id = aws_lb.Tier2App-alb.dns_name
+    target_origin_id = var.alb_dns_name
 
     forwarded_values {
       headers = []

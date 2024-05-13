@@ -27,10 +27,10 @@
 resource "aws_launch_template" "Tier2App-EC2template" {
   name = "Tier2App-EC2template"
   image_id = var.image_id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
 
   # key_name = "test"
-  vpc_security_group_ids = [module.ec2_sg.security_group_id]
+  vpc_security_group_ids = [var.ec2_sg_id]
   user_data = base64encode(file("config_ec2.sh"))
   
   tags = {
@@ -47,8 +47,8 @@ resource "aws_autoscaling_group" "Tier2App-ASG" {
   desired_capacity          = 1
   wait_for_capacity_timeout = 0
   health_check_type         = "ELB"
-  vpc_zone_identifier       = slice(module.vpc.private_subnets,0,2)
-  target_group_arns = [aws_lb_target_group.Tier2App-alb-tg.arn]
+  vpc_zone_identifier       = var.private_subnets #   slice(module.vpc.private_subnets,0,2)
+  target_group_arns         = [var.target_group_arn]
 
   enabled_metrics = [
     "GroupMinSize",

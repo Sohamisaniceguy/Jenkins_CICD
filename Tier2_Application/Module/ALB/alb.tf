@@ -2,8 +2,8 @@ resource "aws_lb" "Tier2App-alb" {
   name               = "Tier2App-alb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [module.alb_sg.security_group_id]
-  subnets            = module.vpc.public_subnets
+  security_groups    = [var.alb_sg_id]
+  subnets            = var.public_subnet
 
   enable_deletion_protection = false
 
@@ -22,7 +22,7 @@ resource "aws_lb_target_group" "Tier2App-alb-tg" {
   name     = "Tier2App-alb-tg"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = module.vpc.vpc_id
+  vpc_id   = var.vpc_id
   target_type = "instance"
 
   health_check {
