@@ -27,6 +27,9 @@ This project aims to demonstrate the use of Jenkins for Continuous Integration a
 
 3. **EKS Cluster Provisioning**:
    - Follow the instructions in the `Eks_cluster/README.md` file to provision and manage the EKS cluster.
+  
+4. **2 Tier Application Deployment**:
+   - Follow the instructions in the `Tier2_Application/README.md` file to provision and manage the architecture.
 
 ## Prerequisites
 
