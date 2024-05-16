@@ -31,7 +31,7 @@ resource "aws_launch_template" "Tier2App-EC2template" {
 
   # key_name = "test"
   vpc_security_group_ids = [var.ec2_sg_id]
-  user_data = base64encode(file("config_ec2.sh"))
+  user_data = base64encode(file("Module/ASG/config_ec2.sh"))
   
   tags = {
     Name = "EC2-ASG"

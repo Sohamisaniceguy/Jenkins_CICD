@@ -4,7 +4,7 @@ module "alb_sg" {
 
   name        = "SecurityG-ALB"
   description = "Security group for ALB"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress_with_cidr_blocks = [
     {
@@ -30,7 +30,7 @@ module "alb_sg" {
     },
   ]
 
-  egress_with_cidr_blocks =[
+  egress_with_cidr_blocks = [
     {
       from_port   = 0
       to_port     = 0
@@ -41,7 +41,7 @@ module "alb_sg" {
   ]
 
   tags = {
-    Name= "ALB-SG"
+    Name = "ALB-SG"
   }
 }
 
@@ -50,9 +50,9 @@ module "alb_sg" {
 module "ec2_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  name        = "SecurityG-EC2"
-  description = "Security group for EC2"
-  vpc_id      = module.vpc.vpc_id
+  name              = "SecurityG-EC2"
+  description       = "Security group for EC2"
+  vpc_id            = var.vpc_id
   security_group_id = module.alb_sg.security_group_id
 
   ingress_with_source_security_group_id = [
@@ -88,9 +88,9 @@ module "ec2_sg" {
 module "db_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  name        = "SecurityG-DB"
-  description = "Security group for DB"
-  vpc_id      = module.vpc.vpc_id
+  name              = "SecurityG-DB"
+  description       = "Security group for DB"
+  vpc_id            = var.vpc_id
   security_group_id = module.ec2_sg.security_group_id
 
   ingress_with_source_security_group_id = [
@@ -101,7 +101,7 @@ module "db_sg" {
     },
   ]
 
-  egress_with_cidr_blocks =[
+  egress_with_cidr_blocks = [
     {
       from_port   = 0
       to_port     = 0
@@ -112,6 +112,6 @@ module "db_sg" {
   ]
 
   tags = {
-    Name= "DB-SG"
+    Name = "DB-SG"
   }
 }
